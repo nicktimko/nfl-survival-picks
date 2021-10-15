@@ -1,8 +1,10 @@
-# NFL Survival Picks 2020
+# NFL Survival Picks
 
 I don't know anything about the teams, but I can data.
 
-[Notebook](./picks.ipynb)
+Notebooks:
+* [2020](./picks.ipynb)
+* [2021](./picks-2021.ipynb)
 
 ## Sources
 
