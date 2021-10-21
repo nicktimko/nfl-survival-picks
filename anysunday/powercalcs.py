@@ -11,9 +11,10 @@ def pick_power_calculator(
     verbose=False,
     ignore_weeks=0,
 ):
-    if len(picks) != 17:
-        raise ValueError("17 weeks of picks needed")
-    if len(set(picks)) != 17:
+    n_weeks = len(schedule)
+    if len(picks) != n_weeks:
+        raise ValueError("picks needed for each week")
+    if len(set(picks)) != n_weeks:
         raise ValueError("unique picks needed")
     if not all(p in powers for p in picks):
         raise ValueError("unrecognized team initials")
