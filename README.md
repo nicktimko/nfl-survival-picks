@@ -5,6 +5,7 @@ I don't know anything about the teams, but I can data.
 Notebooks:
 * [2020](./picks.ipynb)
 * [2021](./picks-2021.ipynb)
+* [2022](./picks-2022.ipynb)
 
 ## Sources
 
