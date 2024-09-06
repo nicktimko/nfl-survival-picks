@@ -50,12 +50,15 @@ def espn_schedule(filename):
     return schedule
 
 
-def espn_powers():
-    """
-    Loads ESPN power ranks and returns them as a TEAM: POWER mapping
-    """
-    data = requests.get(URL_ESPN_FPI_PAGE)
-    selector = parsel.Selector(data.text)
+def _get_espn_fpi_page() -> str:
+    resp = requests.get(URL_ESPN_FPI_PAGE, headers={"User-Agent": "Mozilla/5.0"})
+    resp.raise_for_status()
+    data = resp.text
+    return data
+
+
+def _parse_espn_fpi_page(fpi_page) -> dict:
+    selector = parsel.Selector(fpi_page)
     data_table = selector.xpath("//div[@class='Table__Scroller']/table")
 
     tables = selector.xpath("//div[contains(concat(' ', @class, ' '), ' league-nfl ')]//table")
@@ -83,6 +86,15 @@ def espn_powers():
 
     assert set(powers) == set(club_table)
 
+    return powers
+
+
+def espn_powers():
+    """
+    Loads ESPN power ranks and returns them as a TEAM: POWER mapping
+    """
+    page = _get_espn_fpi_page()
+    powers = _parse_espn_fpi_page(page)
     return powers
 
 
